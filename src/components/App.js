@@ -11,12 +11,17 @@ class App extends React.Component {
         Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_TOKEN}`
       }
     });
-    console.log(response.data.results);
+    console.log(this);
+    this.setState({ images: response.data.results });
   }
   render() {
     return (
       <div className="ui container" style={{ marginTop: "10px" }}>
-        <SearchBar submit={this.onSearchSubmit} />
+        <SearchBar
+          onSubmit={this.onSearchSubmit}
+          guessIam="Im the propsobject"
+        />
+        Found:{this.state.images.length} images
       </div>
     );
   }
